@@ -7,10 +7,12 @@ const PortfolioLayout: React.FC = () => {
   return (
     <div className="h-screen flex bg-terminal-bg">
       {/* Left Sidebar */}
-      <ProfileSidebar />
+      <div className="h-screen w-80 flex-shrink-0">
+        <ProfileSidebar />
+      </div>
       
       {/* Right Terminal Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Command Navigation */}
         <CommandNav />
         

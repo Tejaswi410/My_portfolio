@@ -18,7 +18,7 @@ const Terminal: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const welcomeMessage = `tejaswi@portfolio:~$ welcome
-Hi, I'm Tejaswi Yadav, a B.Tech student in Artificial Intelligence & Data Science.
+Hi, I'm Tejaswi Yadav, B.Tech student in Artificial Intelligence & Data Science.
 
 Welcome to my interactive 'AI powered' portfolio terminal!
 Type 'help' to see available commands.`;
@@ -27,7 +27,7 @@ Type 'help' to see available commands.`;
     help: `Available commands:
 help, about, projects, skills, experience, education, contact, certifications, clear, sudo`,
     
-    about: `I'm Tejaswi Yadav, a B.Tech student in Artificial Intelligence & Data Science with a strong foundation in Python, machine learning, and web development. I'm passionate about building real-world projects that combine AI and intuitive design.`,
+    about: `I'm Tejaswi Yadav, B.Tech student in Artificial Intelligence & Data Science with a strong foundation in Python, machine learning, and web development. I'm passionate about building real-world projects that combine AI and intuitive design.`,
     
     projects: `1. Thoughtify – An anonymous thought-sharing web app
    Stack: Django, Tailwind CSS, HTMX
@@ -69,7 +69,7 @@ Portfolio: https://codolio.com/profile/tejaswi_coder01`,
 - Python – Spoken Tutorial (IIT Bombay)
   Certificate: https://drive.google.com/file/d/1PXIdRxGhK7kWoMYDyYDe1T-5oc4NZbhA/view?usp=sharing`,
     
-    welcome: `Hi, I'm Tejaswi Yadav, a B.Tech student in Artificial Intelligence & Data Science.
+    welcome: `Hi, I'm Tejaswi Yadav, B.Tech student in Artificial Intelligence & Data Science.
 
 Welcome to my interactive 'AI powered' portfolio terminal!
 Type 'help' to see available commands.`,
@@ -79,26 +79,33 @@ Type 'help' to see available commands.`,
     sudo: `sudo: permission denied – you're not admin here 😄`
   };
 
-  useEffect(() => {
-    // Focus input on mount and keep it focused
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-    
-    // Update time every second
-    const timeInterval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
-    return () => clearInterval(timeInterval);
-  }, []);
 
+// Focus input and scroll on history/input change
+useEffect(() => {
+  bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  if (inputRef.current) {
+    inputRef.current.focus();
+  }
+}, [history, input]);
+
+// Update time every second
+useEffect(() => {
+  const timeInterval = setInterval(() => {
+    setCurrentTime(new Date());
+  }, 1000);
+  return () => clearInterval(timeInterval);
+}, []);
   useEffect(() => {
-    // Auto-scroll to bottom when history changes
+    // Auto-scroll to bottom when history or input changes
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-  }, [history]);
+    // Auto-focus input after each command
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [history, input]);
+
 
   const typeText = async (text: string, commandId: number): Promise<void> => {
     return new Promise((resolve) => {
@@ -190,17 +197,17 @@ Type 'help' to see available commands.`,
   };
 
   const getCurrentTimestamp = () => {
-    return currentTime.toLocaleString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
-    });
-  };
+  const day = currentTime.getDate().toString().padStart(2, '0');
+  const month = (currentTime.getMonth() + 1).toString().padStart(2, '0');
+  const year = currentTime.getFullYear();
+  const time = currentTime.toLocaleTimeString();
+  return `${day}/${month}/${year} ${time}`;
+};
+  const bottomRef = useRef<HTMLDivElement>(null);
 
-  return (
+return (
     <div 
-      className="flex flex-col h-full cursor-text" 
+      className="flex flex-col h-full w-full cursor-text" 
       onClick={handleContainerClick}
     >
       <div ref={terminalRef} className="flex-1 overflow-y-auto pb-4 px-6 pt-4">
@@ -223,7 +230,7 @@ Type 'help' to see available commands.`,
           </div>
         ))}
 
-        {/* Current Input Line */}
+           {/* Current Input Line */}
         <div className="flex items-center">
           <span className="terminal-prompt mr-2">tejaswi@portfolio:~$</span>
           <form onSubmit={handleSubmit} className="flex-1">
@@ -241,6 +248,7 @@ Type 'help' to see available commands.`,
           </form>
           <span className="terminal-cursor ml-1">█</span>
         </div>
+        <div ref={bottomRef} />
       </div>
       
       {/* Footer with timestamp */}
