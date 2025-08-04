@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Terminal Portfolio Design System */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Terminal Theme Colors */
+    --terminal-bg: 0 0% 0%;
+    --terminal-green: 120 100% 50%;
+    --terminal-green-dim: 120 100% 40%;
+    --terminal-cursor: 120 100% 50%;
+    --background: 0 0% 0%;
+    --foreground: 120 100% 50%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -100,6 +104,59 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-terminal-bg text-terminal-green font-mono overflow-hidden;
+    font-family: 'Fira Code', 'Courier New', monospace;
+  }
+
+  /* Terminal specific styles */
+  .terminal-container {
+    @apply bg-terminal-bg text-terminal-green min-h-screen w-full font-mono;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    line-height: 1.5;
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .terminal-container {
+      padding: 0.5rem;
+      font-size: 14px;
+    }
+    
+    .terminal-prompt {
+      font-size: 14px;
+    }
+  }
+
+  .terminal-output {
+    @apply whitespace-pre-wrap break-words;
+  }
+
+  .terminal-prompt {
+    @apply text-terminal-green;
+  }
+
+  .terminal-cursor {
+    @apply bg-terminal-cursor text-terminal-bg animate-pulse inline-block;
+    animation: blink 1s infinite;
+  }
+
+  .terminal-link {
+    @apply text-terminal-green underline cursor-pointer hover:text-terminal-green-dim;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 0.05s steps(1, end);
   }
 }

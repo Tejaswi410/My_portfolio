@@ -19,6 +19,12 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Terminal Theme
+				'terminal-bg': 'hsl(var(--terminal-bg))',
+				'terminal-green': 'hsl(var(--terminal-green))',
+				'terminal-green-dim': 'hsl(var(--terminal-green-dim))',
+				'terminal-cursor': 'hsl(var(--terminal-cursor))',
+				// Standard tokens
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
