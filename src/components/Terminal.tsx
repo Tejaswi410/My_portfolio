@@ -24,7 +24,7 @@ Type 'help' to see available commands.`;
 
 const commands = {
     help: `Available commands:
-help, about, projects, skills, experience, education, contact, certifications, leadership, clear, sudo`,
+help, about, projects, skills, experience, education, contact, certifications, clear, sudo`,
     
     about: `I'm Mark Gatere, a Software & AI Engineer passionate about solving problems with code.
 I build tools with JavaScript, Python, and Machine Learning.`,
@@ -47,10 +47,6 @@ LinkedIn: https://linkedin.com/in/gateremark`,
     certifications: `AWS Certified Developer Associate (2023)
 Google Cloud Professional Developer (2022)
 Microsoft Azure Fundamentals (2021)`,
-    
-    leadership: `Tech Lead – Open Source Project (2023)
-Mentor – Coding Bootcamp (2022)
-Workshop Speaker – Developer Conference (2021)`,
     
     welcome: `Hi, I'm Mark Gatere, a Software & AI Engineer.
 

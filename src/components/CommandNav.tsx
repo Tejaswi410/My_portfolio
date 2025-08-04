@@ -3,7 +3,7 @@ import React from 'react';
 const CommandNav: React.FC = () => {
   const commands = [
     'help', 'about', 'projects', 'skills', 'experience', 
-    'contact', 'education', 'certifications', 'leadership', 
+    'contact', 'education', 'certifications', 
     'sudo', 'clear'
   ];
 
