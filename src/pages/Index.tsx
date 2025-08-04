@@ -1,7 +1,7 @@
-import Terminal from '@/components/Terminal';
+import PortfolioLayout from '@/components/PortfolioLayout';
 
 const Index = () => {
-  return <Terminal />;
+  return <PortfolioLayout />;
 };
 
 export default Index;

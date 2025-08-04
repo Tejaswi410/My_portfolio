@@ -16,12 +16,15 @@ const Terminal: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const [commandCounter, setCommandCounter] = useState(0);
 
-  const welcomeMessage = `Welcome to Mark Gatere's terminal portfolio
-Type 'help' to get started`;
+  const welcomeMessage = `gatere@portfolio:~$ welcome
+Hi, I'm Mark Gatere, a Software & AI Engineer.
 
-  const commands = {
+Welcome to my interactive 'AI powered' portfolio terminal!
+Type 'help' to see available commands.`;
+
+const commands = {
     help: `Available commands:
-help, about, projects, skills, experience, education, contact, clear, sudo`,
+help, about, projects, skills, experience, education, contact, certifications, leadership, clear, sudo`,
     
     about: `I'm Mark Gatere, a Software & AI Engineer passionate about solving problems with code.
 I build tools with JavaScript, Python, and Machine Learning.`,
@@ -40,6 +43,19 @@ AI Developer – Freelance (2021–2022)`,
     contact: `Email: mark.gatere@example.com
 GitHub: https://github.com/gateremark
 LinkedIn: https://linkedin.com/in/gateremark`,
+    
+    certifications: `AWS Certified Developer Associate (2023)
+Google Cloud Professional Developer (2022)
+Microsoft Azure Fundamentals (2021)`,
+    
+    leadership: `Tech Lead – Open Source Project (2023)
+Mentor – Coding Bootcamp (2022)
+Workshop Speaker – Developer Conference (2021)`,
+    
+    welcome: `Hi, I'm Mark Gatere, a Software & AI Engineer.
+
+Welcome to my interactive 'AI powered' portfolio terminal!
+Type 'help' to see available commands.`,
     
     clear: 'CLEAR_COMMAND',
     
@@ -149,12 +165,25 @@ LinkedIn: https://linkedin.com/in/gateremark`,
     }
   };
 
+  const getCurrentTimestamp = () => {
+    const now = new Date();
+    return now.toLocaleString('en-US', {
+      month: 'numeric',
+      day: 'numeric', 
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    });
+  };
+
   return (
     <div 
-      className="terminal-container h-screen flex flex-col cursor-text" 
+      className="flex flex-col h-full cursor-text" 
       onClick={handleContainerClick}
     >
-      <div ref={terminalRef} className="flex-1 overflow-y-auto pb-4">
+      <div ref={terminalRef} className="flex-1 overflow-y-auto pb-4 px-6 pt-4">
         {/* Welcome Message */}
         <div className="terminal-output mb-4">
           {welcomeMessage}
@@ -191,6 +220,16 @@ LinkedIn: https://linkedin.com/in/gateremark`,
             />
           </form>
           <span className="terminal-cursor ml-1">█</span>
+        </div>
+      </div>
+      
+      {/* Footer with timestamp */}
+      <div className="border-t border-gray-700 px-6 py-3 flex justify-between items-center text-xs">
+        <div className="text-terminal-green">
+          [Interactive 3D Card]
+        </div>
+        <div className="text-gray-400">
+          {getCurrentTimestamp()}
         </div>
       </div>
     </div>
