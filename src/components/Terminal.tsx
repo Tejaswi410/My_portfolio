@@ -17,46 +17,66 @@ const Terminal: React.FC = () => {
   const [commandCounter, setCommandCounter] = useState(0);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const welcomeMessage = `gatere@portfolio:~$ welcome
-Hi, I'm Mark Gatere, a Software & AI Engineer.
+  const welcomeMessage = `tejaswi@portfolio:~$ welcome
+Hi, I'm Tejaswi Yadav, a B.Tech student in Artificial Intelligence & Data Science.
 
 Welcome to my interactive 'AI powered' portfolio terminal!
 Type 'help' to see available commands.`;
 
-const commands = {
+  const commands = {
     help: `Available commands:
 help, about, projects, skills, experience, education, contact, certifications, clear, sudo`,
     
-    about: `I'm Mark Gatere, a Software & AI Engineer passionate about solving problems with code.
-I build tools with JavaScript, Python, and Machine Learning.`,
+    about: `I'm Tejaswi Yadav, a B.Tech student in Artificial Intelligence & Data Science with a strong foundation in Python, machine learning, and web development. I'm passionate about building real-world projects that combine AI and intuitive design.`,
     
-    projects: `1. BlogBox – A fullstack MERN blog platform. [GitHub: https://github.com/gateremark/blogbox]
-2. GatereBot – Personal AI chatbot. [GitHub: https://github.com/gateremark/gaterebot]
-3. MapsClone – Google Maps clone using React & Mapbox. [Live Demo: https://mapsclone.demo.com]`,
+    projects: `1. Thoughtify – An anonymous thought-sharing web app
+   Stack: Django, Tailwind CSS, HTMX
+   Features: User code anonymity, emotion tagging, daily prompts
+   GitHub: https://github.com/Tejaswi410/Thoughtify
+
+2. Stockzy – Stock price analysis & forecasting tool
+   Stack: Streamlit, yfinance, Meta's Prophet, Pandas
+   Features: Real-time data, future predictions, interactive visualizations
+   GitHub: https://github.com/Tejaswi410/Stockzy`,
     
-    skills: `JavaScript, React, Node.js, Python, MongoDB, TensorFlow, OpenAI API`,
+    skills: `Languages: Python, Java, C, SQL
+Frameworks/Tech: Django, Tailwind CSS, HTML5, CSS3
+Tools: Git, GitHub, VS Code, PyCharm, IntelliJ`,
     
-    experience: `Software Engineer – XYZ Corp (2022–2024)
-AI Developer – Freelance (2021–2022)`,
+    experience: `Instructor – irobokid (June 2024 – Jan 2025), Mumbai
+- Taught Python, Arduino, and web dev to students in an interactive setting.
+- Provided hands-on mentorship and real-world coding problem-solving.
+
+Student Intern – AICTE Eduskills AIML Virtual Internship (Mar 2023 – Jun 2023)
+- Built and tuned ML models using Scikit-learn, TensorFlow, Keras.
+- Conducted data analysis and visualization using Pandas, Matplotlib, Seaborn.`,
     
-    education: `B.Sc. in Computer Science – Nairobi University (2016–2020)`,
+    education: `Shah & Anchor Kutchhi Engineering College, Mumbai (2022–2026)
+B.Tech in Artificial Intelligence & Data Science — CGPA: 8.87`,
     
-    contact: `Email: mark.gatere@example.com
-GitHub: https://github.com/gateremark
-LinkedIn: https://linkedin.com/in/gateremark`,
+    contact: `Email: tejaswi14.work@gmail.com
+Phone: +91-8356087790
+LinkedIn: https://www.linkedin.com/in/tejaswiyadav14
+GitHub: https://github.com/Tejaswi410
+Portfolio: https://codolio.com/profile/tejaswi_coder01`,
     
-    certifications: `AWS Certified Developer Associate (2023)
-Google Cloud Professional Developer (2022)
-Microsoft Azure Fundamentals (2021)`,
+    certifications: `- Streamlit Bootcamp – Udemy
+  Certificate: https://www.udemy.com/certificate/UC-9bac55ce-706b-4422-85f7-84071848fbe8/
+
+- Data Structures and Algorithms – Infosys Springboard
+  Certificate: https://drive.google.com/file/d/1lUW1fuG7amrNqAUqU6SGBNchrcoTBjLl/view?usp=drive_link
+
+- Python – Spoken Tutorial (IIT Bombay)
+  Certificate: https://drive.google.com/file/d/1PXIdRxGhK7kWoMYDyYDe1T-5oc4NZbhA/view?usp=sharing`,
     
-    welcome: `Hi, I'm Mark Gatere, a Software & AI Engineer.
+    welcome: `Hi, I'm Tejaswi Yadav, a B.Tech student in Artificial Intelligence & Data Science.
 
 Welcome to my interactive 'AI powered' portfolio terminal!
 Type 'help' to see available commands.`,
     
     clear: 'CLEAR_COMMAND',
     
-    sudo: `sudo: permission denied – You're not root!`
+    sudo: `sudo: permission denied – you're not admin here 😄`
   };
 
   useEffect(() => {
@@ -193,7 +213,7 @@ Type 'help' to see available commands.`,
         {history.map((item) => (
           <div key={item.id} className="mb-2">
             <div className="terminal-prompt">
-              <span className="text-terminal-green">gateremark@portfolio:~$</span> {item.command}
+              <span className="text-terminal-green">tejaswi@portfolio:~$</span> {item.command}
             </div>
             {item.output && (
               <div className="terminal-output whitespace-pre-line">
@@ -205,7 +225,7 @@ Type 'help' to see available commands.`,
 
         {/* Current Input Line */}
         <div className="flex items-center">
-          <span className="terminal-prompt mr-2">gateremark@portfolio:~$</span>
+          <span className="terminal-prompt mr-2">tejaswi@portfolio:~$</span>
           <form onSubmit={handleSubmit} className="flex-1">
             <input
               ref={inputRef}
