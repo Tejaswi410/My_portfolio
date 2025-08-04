@@ -15,6 +15,7 @@ const Terminal: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [commandCounter, setCommandCounter] = useState(0);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const welcomeMessage = `gatere@portfolio:~$ welcome
 Hi, I'm Mark Gatere, a Software & AI Engineer.
@@ -63,6 +64,13 @@ Type 'help' to see available commands.`,
     if (inputRef.current) {
       inputRef.current.focus();
     }
+    
+    // Update time every second
+    const timeInterval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    
+    return () => clearInterval(timeInterval);
   }, []);
 
   useEffect(() => {
@@ -162,11 +170,7 @@ Type 'help' to see available commands.`,
   };
 
   const getCurrentTimestamp = () => {
-    const now = new Date();
-    return now.toLocaleString('en-US', {
-      month: 'numeric',
-      day: 'numeric', 
-      year: 'numeric',
+    return currentTime.toLocaleString('en-US', {
       hour: 'numeric',
       minute: '2-digit',
       second: '2-digit',
@@ -220,10 +224,7 @@ Type 'help' to see available commands.`,
       </div>
       
       {/* Footer with timestamp */}
-      <div className="border-t border-gray-700 px-6 py-3 flex justify-between items-center text-xs">
-        <div className="text-terminal-green">
-          [Interactive 3D Card]
-        </div>
+      <div className="border-t border-gray-700 px-6 py-3 flex justify-end items-center text-xs">
         <div className="text-gray-400">
           {getCurrentTimestamp()}
         </div>

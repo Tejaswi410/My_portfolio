@@ -22,10 +22,6 @@ const ProfileSidebar: React.FC = () => {
       
       {/* Interactive Elements */}
       <div className="mt-8 flex flex-col items-center space-y-4">
-        <div className="text-terminal-green text-xs opacity-60">
-          [Interactive 3D Card]
-        </div>
-        
         <div className="text-gray-500 text-xs">
           gateremark
         </div>
